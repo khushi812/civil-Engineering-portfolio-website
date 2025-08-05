@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shree Omkareshwar Developers</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="./firebase.js"></script>
+</head>
+<body>
+
+  <!-- ✅ Navbar will be injected here -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- ✅ Hero Section -->
+  <section class="hero">
+    <video autoplay muted loop class="background-video">
+      <source src="photos/backgroundvideo.mp4" type="video/mp4">
+    </video>
+    <div class="hero-text">
+      <h1></h1>
+      <p></p>
+      <div class="hero-buttons">
+        <button onclick="learnMore()">LEARN MORE</button>
+        <button onclick="joinUs()">JOIN US</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Values Section -->
+  <section class="values-section">
+    <div class="value-card">
+      <img src="photos/Quality.png" alt="Quality Icon">
+      <h3>QUALITY</h3>
+      <p>We uphold the highest standards of construction quality, ensuring every project reflects precision, durability, and superior craftsmanship.</p>
+    </div>
+
+    <div class="value-card">
+      <img src="photos/consistency.jpg" alt="Consistency Icon">
+      <h3>CONSISTENCY</h3>
+      <p>With decades of experience, our consistent performance in delivering projects on time strengthens our reputation in the real estate industry.</p>
+    </div>
+
+    <div class="value-card">
+      <img src="photos/trust.jpg" alt="Trust Icon">
+      <h3>TRUST</h3>
+      <p>Our stakeholders' trust is our greatest asset. We honor commitments with integrity, transparency, and customer-centric service at all levels.</p>
+    </div>
+  </section>
+
+  <!-- ✅ Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column"></div>
+
+      <div class="footer-column">
+        <h4>MENU</h4>
+        <p><a href="terms.html">Terms & Conditions</a></p>
+        <p><a href="privacy.html">Privacy Policy</a></p> 
+      </div>
+    </div>
+
+    <p>© 2025 Shree Omkareshwar Developers - All Rights Reserved.</p>
+    <button onclick="location.href='login.html'" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      Admin Login
+    </button>
+  </footer>
+
+  <!-- ✅ Navbar Inject Script -->
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <!-- ✅ Custom Script -->
+  <script>
+    function toggleDropdown(event) {
+      event.preventDefault();
+      const dropdown = document.getElementById("projectsDropdown");
+      dropdown.classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+          dropdowns[i].classList.remove('show');
+        }
+      }
+    }
+
+    function learnMore() {
+      alert("Learn More clicked!");
+    }
+
+    function joinUs() {
+      alert("Join Us clicked!");
+    }
+  </script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

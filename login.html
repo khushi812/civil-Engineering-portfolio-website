@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login - Shree Omkareshwar Developers</title>
+  <link rel="stylesheet" href="adminlogin.css" />
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-box">
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button id="loginBtn">Login</button>
+    <p class="error-message" id="error"></p>
+    <p class="success-message" id="success"></p> <!-- ✅ Success message added -->
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDSoH3VobmKWJJqL6mX7wQ0S28L0XhuTGc",
+    authDomain: "rare-citadel-466617-h8.firebaseapp.com",
+    projectId: "rare-citadel-466617-h8",
+    storageBucket: "rare-citadel-466617-h8.firebasestorage.app",
+    messagingSenderId: "480738171799",
+    appId: "1:480738171799:web:dcd240e837b92e98ce82d2",
+    measurementId: "G-CR3X24S4HV"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.getElementById("loginBtn").addEventListener("click", async () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const errorText = document.getElementById("error");
+    const successText = document.getElementById("success");
+
+    errorText.textContent = "";
+    successText.textContent = "";
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      localStorage.setItem("isAdmin", "true");
+      successText.textContent = "✅ Login successful! Redirecting...";
+      setTimeout(() => {
+        window.location.href = "admin-panel.html";
+      }, 1500); // Delay for better UX
+    } catch (error) {
+      errorText.textContent = "❌ Login failed: " + error.message;
+    }
+  });
+</script>
+
+</body>
+</html>

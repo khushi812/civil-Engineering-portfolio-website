@@ -1,0 +1,36 @@
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #fcfcfc;
+  min-width: 180px;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+}
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.hero {
+  padding-top: 80px;            /* clears space below navbar */
+  min-height: 100px;             /* or your preferred hero height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;              /* or your hero background */
+}
+
+.hero-content {
+  width: 100%;
+  text-align: center;
+  color: rgb(20, 19, 19);
+}
+
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects - Shree Omkareshwar Developers</title>
+  <link rel="stylesheet" href="project.css" />
+</head>
+
+<body>
+
+  <!-- Navbar will be injected here -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 id="projectHeading">Projects</h1>
+    </div>
+  </section>
+
+  <!-- PROJECT LIST -->
+  <div class="projects-container" id="projectList"></div>
+
+  <!-- Firebase Script to Load Projects -->
+  <script type="module">
+    import { db } from './firebase.js';
+    import { collection, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+    const params = new URLSearchParams(window.location.search);
+    const statusFilter = params.get("type")?.toLowerCase() || "upcoming";
+
+    document.getElementById("projectHeading").textContent =
+      statusFilter.charAt(0).toUpperCase() + statusFilter.slice(1) + " Projects";
+
+    const projectList = document.getElementById("projectList");
+    const projectCollection = collection(db, "projects");
+
+    async function loadProjects() {
+      const snapshot = await getDocs(projectCollection);
+      let found = false;
+      projectList.innerHTML = "";
+
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        const status = data.status?.toLowerCase();
+
+        if (status === statusFilter) {
+          found = true;
+          const div = document.createElement("div");
+          div.className = "project-card";
+          div.innerHTML = `
+            ${(data.imageURLs && data.imageURLs[0]) ? `<img src="${data.imageURLs[0]}" alt="Project Image">` : `<div style="height: 200px; background: #eee; display: flex; align-items: center; justify-content: center;">No Image</div>`}
+            <h3>${data.title}</h3>
+            <p>${data.description || ""}</p>
+          `;
+          projectList.appendChild(div);
+        }
+      });
+
+      if (!found) {
+        projectList.innerHTML = `<div class="empty-message">No ${statusFilter} projects found.</div>`;
+      }
+    }
+
+    loadProjects();
+  </script>
+
+  <!-- Inject Navbar from nav.html -->
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>
+

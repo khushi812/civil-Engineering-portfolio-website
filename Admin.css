@@ -1,0 +1,96 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f2f4f8;
+  color: #333;
+  padding: 20px;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #002d5e;
+  margin-bottom: 30px;
+}
+
+form {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input[type="file"] {
+  margin: 10px 0;
+}
+
+button {
+  background: #141515;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #004080;
+}
+
+h2 {
+  color: #002d5e;
+  margin-top: 40px;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.project-card h3 {
+  margin-bottom: 5px;
+  color: #002d5e;
+}
+
+.project-card p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.project-card img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+
+.project-buttons {
+  margin-top: 15px;
+}
+
+.project-buttons button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #666;
+}
+
+.project-buttons button:hover {
+  background-color: #444;
+}

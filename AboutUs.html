@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Shree Omkareshwar Developers</title>
+  <link rel="stylesheet" href="About.css" />
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <video src="photos/logo.mp4" autoplay muted loop playsinline style="width: 70px; border-radius: 20%;"></video>
+  </div>
+
+  <nav>
+    <div class="hamburger">&#9776;</div>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="#" class="active">ABOUT</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn" onclick="toggleDropdown(event)">PROJECTS ▼</a>
+        <div class="dropdown-content" id="projectsDropdown">
+          <a href="project.html?type=Upcoming">Upcoming Projects</a>
+          <a href="project.html?type=ongoing">Ongoing Projects</a>
+          <a href="project.html?type=Completed">Completed Projects</a>
+        </div>
+      </li>
+      <li><a href="#">SERVICES</a></li>
+      <li><a href="#">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <div class="social-icons">
+    <a href="#"><img src="photos/facebook.png" alt="Facebook" /></a>
+    <a href="https://www.instagram.com/shree_omkareshwardevelopers"><img src="photos/instagram.jpeg" alt="Instagram" /></a>
+  </div>
+</header>
+
+<!-- ✅ Hero Section Like Home -->
+<section class="hero">
+  
+  <div class="hero-text">
+    <h1>About Us</h1>
+    <p>
+  Shree Omkareshwar Developers is an emerging organization based in Pune.
+ B.K developers is our sister concern organization in the field of realty since a decade.
+Recently we have diversified our activities in to REDEVELOPMENT and RECONSTRUCTION.
+We are known for our quality construction and timely delivery of the project.
+We are a team of Architects, Engineers and Professionals having 30 years of experience in the 
+field of REALTY with proven track records and satisfied customers to back our vision.
+The Redevelopment cell is headed by the young, dynamic new generation having
+keen knowledge, ethical values and professional interest in promotion and development of societies.
+     
+ 
+
+  </div>
+</section>
+
+<section class="why-choose-us">
+  <h2>Why Choose Shree Omkareshwar Developers?</h2>
+  <p class="intro-text">
+    We are committed to delivering inspiring spaces with ethical values, expert planning, and a vision for sustainable redevelopment.
+  </p>
+
+  <div class="features">
+    <div class="feature-card">
+      <img src="photos/Excellence.jpg" alt="Excellence">
+      <h3>Excellence</h3>
+      <p>With dedication and skill, we craft exceptional spaces showcasing our craftsmanship and precision.</p>
+    </div>
+    <div class="feature-card">
+      <img src="photos/valueofmoney.png" alt="Value for Money">
+      <h3>Value for Money</h3>
+      <p>We ensure maximum value with every project, prioritizing client satisfaction and cost-effectiveness.</p>
+    </div>
+    <div class="feature-card">
+      <img src="photos/Trust.jpg" alt="Trust">
+      <h3>Trust</h3>
+      <p>Built on transparency and integrity, our relationships with clients are rooted in lasting trust.</p>
+    </div>
+    <div class="feature-card">
+      <img src="photos/Experience.png" alt="Experience">
+      <h3>Experience</h3>
+      <p>Decades of real estate knowledge blended with innovation ensure stunning and timely project outcomes.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleDropdown(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById("projectsDropdown");
+    dropdown.classList.toggle("show");
+  }
+
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      const dropdowns = document.getElementsByClassName("dropdown-content");
+      for (let i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].classList.remove('show');
+      }
+    }
+  };
+</script>
+
+</body>
+</html>
+
+
+
