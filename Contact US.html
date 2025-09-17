@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Shree Omkareshwar Developers</title>
+  <link rel="stylesheet" href="contact.css" />
+  
+  <style>
+    /* Container for form + map */
+    .contact .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-form,
+    .map-box {
+      flex: 1;
+      min-width: 320px;
+    }
+
+    .map-box iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    #statusMsg {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div id="navbar-container"></div>
+
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <div class="container">
+        <div class="contact-info">
+          <h2>Keep In Touch</h2>
+          <p>
+            <strong>Shree Omkareshwar Developers</strong><br>
+            Survey No. 838/1/1, F.P. No. 949/1,<br>
+            B/H Uma Villa, Sola Overbridge,<br>
+            Pune, Maharashtra 411001
+          </p>
+          <p><strong>Email:</strong> info@shreeomkareshwardevelopers.com</p>
+          <p><strong>Phone:</strong> +91 98765 43210</p>
+          <p><strong>Timing:</strong> Mon–Sun 10:00AM – 7:30PM</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <div class="container">
+
+      <!-- Left Side: Form -->
+      <div class="contact-form">
+        <h2>Leave A Message</h2>
+        <form id="contactForm">
+          <input type="text" id="name" placeholder="Your Name" required>
+          <input type="email" id="email" placeholder="Email Address" required>
+          <input type="tel" id="phone" placeholder="Your Phone No." required>
+          <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+          <button type="submit">Submit</button>
+          <p id="statusMsg"></p>
+        </form>
+      </div>
+
+      <!-- Right Side: Map -->
+      <div class="map-box">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.3242387657324!2d73.834104814858!3d18.560760687384513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c11e3b1b0b13%3A0xa9f0c8d7c6a86d8d!2sShree%20Omkareshwar%20Developers!5e0!3m2!1sen!2sin!4v1691820000000!5m2!1sen!2sin" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Navbar loader -->
+  <script>
+    fetch('nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-container').innerHTML = data;
+
+        const menuToggle = document.querySelector("#navbar-container .hamburger");
+        const navLinks = document.querySelector("#navbar-container #navLinks");
+        const dropdownBtn = document.querySelector("#navbar-container .dropbtn");
+        const projectsDropdown = document.querySelector("#navbar-container #projectsDropdown");
+
+        if (menuToggle && navLinks) {
+          menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+          });
+        }
+
+        if (dropdownBtn && projectsDropdown) {
+          dropdownBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            projectsDropdown.classList.toggle("show");
+          });
+        }
+
+        document.addEventListener("click", function (event) {
+          if (!event.target.closest(".dropdown")) {
+            projectsDropdown?.classList.remove("show");
+          }
+        });
+      });
+  </script>
+
+  <!-- Footer loader -->
+  <script>
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-placeholder').innerHTML = html;
+      });
+  </script>
+
+  <!-- ✅ EmailJS SDK + Contact script -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="contact.js" defer></script>
+</body>
+</html>
+

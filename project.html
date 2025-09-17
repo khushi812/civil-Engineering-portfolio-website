@@ -5,24 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects - Shree Omkareshwar Developers</title>
   <link rel="stylesheet" href="project.css" />
+  <style>
+    #projectHeading {
+      text-align: center;
+      font-size: 50px;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #000000;
+    }
+
+    .projects-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      align-items: flex-start;
+    }
+
+    @media (max-width: 768px) {
+      .project-card {
+        flex-direction: column;
+      }
+    }
+
+    /* Left side: images only */
+   .project-left {
+  flex: 1;
+  max-width: 500px; /* ✅ Control width */
+}
+
+.project-images {
+  display: flex;
+  overflow-x: auto; /* ✅ Instagram-style scroll */
+  scroll-snap-type: x mandatory;
+  gap: 30px;
+}
+
+.project-images img {
+  flex: 0 0 100%;
+  max-width: 800px;  /* ✅ Prevents image from being too big */
+  /* height: 200px;     ✅ Uniform height */
+  object-fit: cover; /* ✅ Crops properly */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  scroll-snap-align: center;
+}
+
+
+    /* Right side: title + description */
+    .project-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 50px;
+
+    }
+
+    .project-right h3 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #111;
+    }
+
+    .project-right ul {
+      padding-left: 18px;
+      margin: 0;
+      color: #333;
+      font-size: 15px;
+    }
+
+    .project-right ul li {
+      margin-bottom: 6px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Navbar will be injected here -->
-  <div id="navbar-placeholder"></div>
+  <div id="navbar-container"></div>
 
-  <!-- HERO SECTION -->
   <section class="hero">
     <div class="hero-content">
       <h1 id="projectHeading">Projects</h1>
     </div>
   </section>
 
-  <!-- PROJECT LIST -->
   <div class="projects-container" id="projectList"></div>
 
-  <!-- Firebase Script to Load Projects -->
   <script type="module">
     import { db } from './firebase.js';
     import { collection, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
@@ -47,12 +128,32 @@
 
         if (status === statusFilter) {
           found = true;
+
+          // ✅ Description -> bullet points
+          let descriptionHTML = "";
+          if (data.description) {
+            const points = data.description
+              .split(/[\n,]+/)
+              .map(p => p.trim())
+              .filter(p => p.length > 0);
+            descriptionHTML = `<ul>${points.map(p => `<li>${p}</li>`).join("")}</ul>`;
+          }
+
+          // ✅ Build project card layout
           const div = document.createElement("div");
           div.className = "project-card";
           div.innerHTML = `
-            ${(data.imageURLs && data.imageURLs[0]) ? `<img src="${data.imageURLs[0]}" alt="Project Image">` : `<div style="height: 200px; background: #eee; display: flex; align-items: center; justify-content: center;">No Image</div>`}
-            <h3>${data.title}</h3>
-            <p>${data.description || ""}</p>
+            <div class="project-left">
+              <div class="project-images">
+                ${(data.imageURLs && data.imageURLs.length > 0)
+                  ? data.imageURLs.map(url => `<img src="${url}" alt="Project Image">`).join("")
+                  : `<img src="no-image.jpg" alt="No Image">`}
+              </div>
+            </div>
+            <div class="project-right">
+              <h3>${data.title}</h3>
+              ${descriptionHTML}
+            </div>
           `;
           projectList.appendChild(div);
         }
@@ -66,15 +167,37 @@
     loadProjects();
   </script>
 
-  <!-- Inject Navbar from nav.html -->
   <script>
-    fetch('nav.html')
-      .then(res => res.text())
+    fetch("nav.html")
+      .then(response => response.text())
       .then(data => {
-        document.getElementById('navbar-placeholder').innerHTML = data;
+        document.getElementById("navbar-container").innerHTML = data;
+
+        const menuToggle = document.querySelector("#navbar-container .hamburger");
+        const navLinks = document.querySelector("#navbar-container #navLinks");
+        const dropdownBtn = document.querySelector("#navbar-container .dropbtn");
+        const projectsDropdown = document.querySelector("#navbar-container #projectsDropdown");
+
+        if (menuToggle && navLinks) {
+          menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+          });
+        }
+
+        if (dropdownBtn && projectsDropdown) {
+          dropdownBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            projectsDropdown.classList.toggle("show");
+          });
+        }
+
+        document.addEventListener("click", function (event) {
+          if (!event.target.closest(".dropdown")) {
+            projectsDropdown?.classList.remove("show");
+          }
+        });
       });
   </script>
 
 </body>
 </html>
-

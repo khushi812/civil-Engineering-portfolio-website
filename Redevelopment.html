@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redevelopment Projects</title>
+  <link rel="stylesheet" href="redevelopmentstyle.css" />
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- ✅ Hero Section  -->
+  <section class="hero">
+     <!-- <img src="photos/redevelopment-banner.jpg" alt="Redevelopment Projects" class="hero-img">  -->
+     <div class="hero-text">
+      <h1><bold>Redevelopment Projects</bold></h1>
+      <h2>Transforming Homes, Preserving Emotions<h3>
+    </div>
+  </section> 
+
+  <!-- ✅ About Redevelopment  -->
+  <section class="about-redevelopment">
+    <div class="container">
+      
+      <h2>About Our Redevelopment Projects</h2>
+      <p>
+        As times change and lifestyles evolve, people desire homes that live up to this transformation. 
+        Understanding this specific need of Punekars, <b>Shree Omkareshwar Developers</b> initiated redevelopment of some of the 
+        oldest addresses at Pune’s most popular locations.
+      </p>
+      <p>
+        Taking care of people’s cherished emotions about their homes, inherited by them across generations, 
+        we follow a transparent and hassle-free redevelopment process to deliver the best space and lifestyle upgrades.
+      </p>
+    </div>
+  </section>
+  <!-- ✅ Need for Redevelopment in a Society -->
+  <section class="need-redevelopment">
+    <div class="container">
+      <h2>Need for Redevelopment in a Society</h2>
+      <ul>
+        <li><b>Structural Safety –</b> Replaces old and weak buildings with earthquake-resistant and durable structures.</li>
+        <li><b>Regulatory Compliance –</b> Aligns with current building codes, fire safety norms, and municipal regulations.</li>
+        <li><b>Modern Amenities –</b> Provides lifts, parking, security systems, green spaces, and other lifestyle facilities.</li>
+        <li><b>Optimized Land Utilization –</b> Ensures efficient use of space, offering larger and better-planned apartments.</li>
+        <li><b>Enhanced Property Value –</b> Increases market worth and rental potential of flats.</li>
+        <li><b>Reduced Maintenance Costs –</b> Eliminates recurring expenses on repairs and structural upkeep.</li>
+        <li><b>Improved Quality of Life –</b> Creates a sustainable, comfortable, and community-friendly living environment.</li>
+      </ul>
+    </div>
+  </section>
+
+  
+
+  <!-- ✅ Redevelopment Process Steps -->
+  <section class="redevelopment-steps">
+    <div class="container">
+      <h2>Our Redevelopment Process</h2>
+
+      <div class="step">
+        <h3>Step 1</h3>
+        <p>
+          The first step is to understand the needs of the residents and study the plot. 
+          We follow it up with a brief presentation about the redevelopment overview. 
+          This includes the layout, draft plans, commercial terms, timelines, specifications, 
+          shifting arrangements and document requirements.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>Step 2</h3>
+        <p>
+          The project plan is reworked to fit-in the requirements of the members. 
+          A final draft of the techno-commercial plan, with building sketches and legal agreements 
+          is presented to the committee. This is followed by obtaining sanctions from the municipal/local authority.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>Step 3</h3>
+        <p>
+          Once commercial terms have been fulfilled, the residents are shifted into rented apartments. 
+          The building is thus ready to be handed over for redevelopment. The process of redevelopment will be 
+          initiated and completed as per the sanctioned plan.
+        </p>
+      </div>
+
+      <div class="step">
+        <h3>Step 4</h3>
+        <p>
+          Once the building is ready as per the architectural assessment, aspects such as finishing, 
+          inspection and various other installations will be looked into thoroughly. 
+          The occupation as well as completion certificate gets cleared and the building is handed over 
+          to the residents with respective inductions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- ✅ Scripts -->
+  <script>
+    // Load Navbar dynamically + hamburger/dropdown
+    fetch("nav.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-placeholder").innerHTML = html;
+
+        const menuToggle = document.querySelector("#navbar-placeholder .hamburger");
+        const navLinks = document.querySelector("#navbar-placeholder #navLinks");
+        const dropdownBtn = document.querySelector("#navbar-placeholder .dropbtn");
+        const projectsDropdown = document.querySelector("#navbar-placeholder #projectsDropdown");
+
+        // Hamburger toggle
+        if (menuToggle && navLinks) {
+          menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+          });
+        }
+
+        // Dropdown toggle
+        if (dropdownBtn && projectsDropdown) {
+          dropdownBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            projectsDropdown.classList.toggle("show");
+          });
+        }
+
+        // Close dropdown if clicked outside
+        document.addEventListener("click", function(event) {
+          if (!event.target.closest(".dropdown")) {
+            projectsDropdown?.classList.remove("show");
+          }
+        });
+      });
+
+    // Load Footer dynamically
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
+
+

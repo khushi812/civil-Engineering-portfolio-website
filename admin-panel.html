@@ -5,18 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Panel - Projects</title>
   <link rel="stylesheet" href="Admin.css" />
-  <style>
+  
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     form, .project { margin-bottom: 20px; }
-    img { max-width: 200px; display: block; margin-top: 10px; }
     button { margin-right: 10px; }
     .status-btn { margin: 0 4px; }
+
+    /* Project card */
+    .project {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      background: #fafafa;
+    }
+
+    /* Swiper carousel */
+    .project-swiper {
+      width: 100%;
+      max-width: 700px;
+      height: 350px;
+      margin: 15px auto;
+      border-radius: 8px;
+      overflow: hidden;
+      /* background: #fff; */
+    }
+
+    .project-swiper img {
+      width: 100%;
+      height: 100%;
+      /* object-fit: cover; */
+    }
+
+    /* Swiper arrows */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #333;
+    }
+
+    /* Swiper pagination */
+    .swiper-pagination-bullet {
+      background: #333;
+    }
   </style>
 </head>
 <body>
   
   <h1>Admin Project Manager</h1>
 
+  <!-- Project Form -->
   <form id="projectForm">
     <input type="text" id="title" placeholder="Project Title" required /><br/>
     <input type="text" id="description" placeholder="Project Description (use commas to separate points)" required /><br/>
@@ -40,16 +80,23 @@
   <h2>Completed Projects</h2>
   <div id="completedList"></div>
 
-  <!-- Firebase integration -->
+  <button onclick="location.href='index.html'" style="padding: 6px 9px; color: #fff; background:#444; border: none; border-radius: 4px; cursor: pointer;">
+     Website Page
+  </button>
+
+  <!-- Firebase + Swiper -->
   <script type="module">
     import { auth, db, storage } from './firebase.js';
     import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
     import {
-      collection, getDocs, addDoc, updateDoc, deleteDoc, doc
+      collection, getDocs, addDoc, updateDoc, deleteDoc, doc, getDoc
     } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
     import {
       ref, uploadBytes, getDownloadURL
     } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
+
+    // Swiper.js
+    import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
 
     const form = document.getElementById("projectForm");
     const title = document.getElementById("title");
@@ -63,7 +110,7 @@
     onAuthStateChanged(auth, user => {
       if (!user) {
         alert("Access denied. Please login as admin.");
-        window.location.href = "login.html"; // redirect to login if not authenticated
+        window.location.href = "login.html"; 
       } else {
         localStorage.setItem("isAdmin", "true");
         loadProjects();
@@ -71,7 +118,7 @@
     });
 
     // ✅ Edit Project
-    window.editProject = (id, titleVal, descVal, imageArray, statusVal) => {
+    window.editProject = (id, titleVal, descVal, statusVal) => {
       title.value = titleVal;
       description.value = descVal;
       status.value = statusVal;
@@ -95,6 +142,15 @@
       let imageURLs = [];
 
       try {
+        // If editing, keep old images
+        if (id) {
+          const existingDoc = await getDoc(doc(db, "projects", id));
+          if (existingDoc.exists()) {
+            imageURLs = existingDoc.data().imageURLs || [];
+          }
+        }
+
+        // Upload new files if added
         if (files.length > 0) {
           for (let file of files) {
             const storageRef = ref(storage, `projectImages/${Date.now()}_${file.name}`);
@@ -127,6 +183,25 @@
       }
     });
 
+    // ✅ Initialize Swipers
+    function initSwipers() {
+      document.querySelectorAll(".project-swiper").forEach(swiperEl => {
+        new Swiper(swiperEl, {
+          loop: true,
+          navigation: {
+            nextEl: swiperEl.querySelector(".swiper-button-next"),
+            prevEl: swiperEl.querySelector(".swiper-button-prev"),
+          },
+          pagination: {
+            el: swiperEl.querySelector(".swiper-pagination"),
+            clickable: true,
+          },
+          slidesPerView: 1,
+          spaceBetween: 10,
+        });
+      });
+    }
+
     // ✅ Load projects
     async function loadProjects() {
       const snapshot = await getDocs(projectCollection);
@@ -148,8 +223,18 @@
           <h3>${data.title}</h3>
           <p><strong>Status:</strong> ${data.status}</p>
           ${descriptionPoints}
-          ${(data.imageURLs || []).map(url => `<img src="${url}" alt="Project Image" />`).join('')}
-          <button onclick="editProject('${id}', \`${data.title}\`, \`${data.description}\`, ${JSON.stringify(data.imageURLs)}, \`${data.status}\`)">Edit</button>
+          <div class="swiper project-swiper">
+            <div class="swiper-wrapper">
+              ${(data.imageURLs || []).map(url => `
+                <div class="swiper-slide">
+                  <img src="${url}" alt="Project Image" />
+                </div>`).join('')}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+          <button onclick="editProject('${id}', '${data.title.replace(/'/g,"\\'")}', '${data.description.replace(/'/g,"\\'")}', '${data.status}')">Edit</button>
           <button onclick="deleteProject('${id}')">Delete</button>
           <hr/>
         `;
@@ -162,7 +247,14 @@
           document.getElementById("completedList").appendChild(div);
         }
       });
+
+      initSwipers(); // initialize sliders after load
     }
   </script>
+
+  <!-- Swiper.js JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 </html>
+
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer Example</title>
+
+  <style>
+    /* Footer Styling */
+    footer {
+      background: #1d1d1d;
+      color: #ccc;
+      padding: 10px;
+      text-align: left;
+      margin-top: auto;
+
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: left;
+      align-items: left;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .footer-column {
+      min-width: 200px;
+    }
+
+    .footer-column h4 {
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-weight: bold;
+      
+    }
+
+    .footer-column a {
+      display: block;
+      color: #f4f2f2;
+      font-size: 14px;
+      text-decoration: none;
+      margin: 6px 0;
+      transition: color 0.3s ease;
+      
+
+    }
+
+    .footer-column a:hover {
+      color: #fff;
+    }
+
+    footer p {
+      font-size: 14px;
+      margin: 10px 0;
+      color: #999;
+    }
+
+    footer button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background: #202020;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    footer button:hover {
+      background: #100f0f
+    }
+
+    /* Responsive Footer */
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Content Example
+  <main style="min-height: 80vh; display: flex; justify-content: center; align-items: center;">
+    <h1>Page Content Here</h1>
+  </main> -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column"></div>
+      <div class="footer-column">
+        <h4>MENU</h4>
+        <p><a href="terms.html">Terms & Conditions</a></p>
+        <p><a href="privacy.html">Privacy Policy</a></p> 
+      </div>
+    </div>
+    <p>© 2025 Shree Omkareshwar Developers - All Rights Reserved.</p>
+    <!-- <button onclick="location.href='login.html'"> -->
+      <!-- Admin Login -->
+    </button>
+  </footer>
+
+</body>
+</html>

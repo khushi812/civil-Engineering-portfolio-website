@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enquiry Form</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 15px;
+      overflow-y: auto; /* ✅ allows scroll on small height devices */
+    }
+
+    .enquiry-form {
+      background: #fff;
+      color: #111;
+      padding: 35px 30px;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      width: 100%;
+      max-width: 420px;
+      animation: fadeIn 0.7s ease-in-out;
+    }
+
+    .enquiry-form h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #000;
+      border-bottom: 2px solid #000;
+      padding-bottom: 8px;
+    }
+
+    .enquiry-form label {
+      font-weight: 600;
+      display: block;
+      margin: 12px 0 6px;
+      font-size: 14px;
+    }
+
+    .enquiry-form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    .enquiry-form input:focus {
+      border-color: #000;
+      box-shadow: 0 0 6px rgba(0,0,0,0.25);
+    }
+
+    /* Radio group styled as cards */
+    .radio-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .radio-option {
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+      font-weight: 500;
+      background: #fafafa;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    input[type="radio"]:checked + .radio-option {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+      transform: scale(1.05);
+      font-weight: 600;
+    }
+
+    .enquiry-form button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #000;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.5px;
+    }
+
+    .enquiry-form button:hover {
+      background: #333;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* ✅ Responsive Media Queries */
+
+    /* Extra Small Devices (≤360px) */
+    @media (max-width: 360px) {
+      body {
+        padding: 8px;
+        align-items: flex-start;
+      }
+      .enquiry-form {
+        padding: 18px 14px;
+        margin-top: 15px;
+      }
+      .enquiry-form h2 {
+        font-size: 18px;
+      }
+      .radio-group {
+        grid-template-columns: 1fr;
+      }
+      .enquiry-form input,
+      .enquiry-form button {
+        font-size: 12px;
+        padding: 8px;
+      }
+    }
+
+    /* Mobile Devices (361px–480px) */
+    @media (min-width: 361px) and (max-width: 480px) {
+      .enquiry-form {
+        padding: 20px 18px;
+      }
+      .enquiry-form h2 {
+        font-size: 20px;
+      }
+      .radio-group {
+        grid-template-columns: 1fr;
+      }
+      .enquiry-form input,
+      .enquiry-form button {
+        font-size: 13px;
+        padding: 10px;
+      }
+    }
+
+    /* Small Tablets (481px–768px) */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .enquiry-form {
+        max-width: 500px;
+        padding: 28px 24px;
+      }
+      .enquiry-form h2 {
+        font-size: 24px;
+      }
+      .radio-group {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .radio-option {
+        font-size: 15px;
+      }
+    }
+
+    /* Tablets & Small Laptops (769px–1024px) */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .enquiry-form {
+        max-width: 550px;
+      }
+      .enquiry-form h2 {
+        font-size: 26px;
+      }
+      .radio-option {
+        font-size: 15px;
+        padding: 12px;
+      }
+    }
+
+    /* Desktop (≥1025px) */
+    @media (min-width: 1025px) {
+      .enquiry-form {
+        max-width: 600px;
+      }
+      .enquiry-form h2 {
+        font-size: 28px;
+      }
+      .radio-option {
+        font-size: 16px;
+      }
+    }
+
+    /* ✅ Ultra-Wide Screens (≥1440px) */
+    @media (min-width: 1440px) {
+      .enquiry-form {
+        max-width: 700px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <form class="enquiry-form" id="enquiryForm">
+    <h2>Enquiry Form</h2>
+
+    <!-- ✅ Hidden project name -->
+    <input type="hidden" id="projectName" name="project" value="">
+
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email ID</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="contact">Contact Number</label>
+    <input type="tel" id="contact" name="contact" required>
+
+    <label>Requirement</label>
+    <div class="radio-group">
+      <label>
+        <input type="radio" name="requirement" value="1BHK" required>
+        <div class="radio-option">1BHK</div>
+      </label>
+      <label>
+        <input type="radio" name="requirement" value="2BHK">
+        <div class="radio-option">2BHK</div>
+      </label>
+      <label>
+        <input type="radio" name="requirement" value="3BHK">
+        <div class="radio-option">3BHK</div>
+      </label>
+      <label>
+        <input type="radio" name="requirement" value="4BHK">
+        <div class="radio-option">4BHK</div>
+      </label>
+    </div>
+
+    <label for="budget">Budget</label>
+    <input type="text" id="budget" name="budget" placeholder="e.g. 40-60 Lakhs">
+
+    <button type="submit">Submit Enquiry</button>
+  </form>
+
+  <!-- ✅ EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("Z27MwkjsnGanAXY7X"); // Replace with your EmailJS Public Key
+    })();
+
+    // ✅ Capture project from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const project = urlParams.get("project");
+    if (project) {
+      document.getElementById("projectName").value = project;
+    }
+
+    // ✅ Form submit handler
+    document.getElementById("enquiryForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const requirement = document.querySelector('input[name="requirement"]:checked').value;
+
+      const templateParams = {
+        project: document.getElementById("projectName").value,
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        contact: document.getElementById("contact").value,
+        requirement: requirement,
+        budget: document.getElementById("budget").value
+      };
+
+      emailjs.send("service_rwbajwb", "template_mzify0p", templateParams)
+        .then(function() {
+          alert("✅ Enquiry Sent Successfully!");
+          document.getElementById("enquiryForm").reset();
+        }, function(error) {
+          alert("❌ Failed to send enquiry. Please try again.");
+          console.error(error);
+        });
+    });
+  </script>
+</body>
+</html>
+

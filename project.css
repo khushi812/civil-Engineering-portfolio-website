@@ -1,36 +1,96 @@
-
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background: #fcfcfc;
-  min-width: 180px;
-  top: 100%;
-  left: 0;
-  z-index: 1;
-}
-
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.hero {
-  padding-top: 80px;            /* clears space below navbar */
-  min-height: 100px;             /* or your preferred hero height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #ffffff;              /* or your hero background */
-}
-
-.hero-content {
-  width: 100%;
+/* === Page Heading === */
+#projectHeading {
   text-align: center;
-  color: rgb(20, 19, 19);
+  font-size: 48px;
+  font-weight: bold;
+  margin: 30px 0;
+  color: #111;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* === Projects Container === */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
+/* === Project Card === */
+.project-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;   /* ✅ Image upar, content neeche */
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+/* === Project Image (Top) === */
+.project-images img {
+  width: 100%;
+  height: 320px;     /* Fixed height */
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+/* === Project Info Section (Below image) === */
+.project-right {
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.project-right h3 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.project-right ul {
+  padding-left: 20px;
+  margin: 0;
+  color: #444;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.project-right ul li {
+  margin-bottom: 10px;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+  .project-images img {
+    height: 240px;
+  }
+  .project-right h3 {
+    text-align: center;
+    font-size: 24px;
+  }
+  .project-right ul {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  #projectHeading {
+    font-size: 28px;
+  }
+  .project-images img {
+    height: 200px;
+  }
+  .project-right h3 {
+    font-size: 20px;
+  }
+  .project-right ul {
+    font-size: 13px;
+  }
+}

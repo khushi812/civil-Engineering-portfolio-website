@@ -1,107 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shree Omkareshwar Developers</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script type="module" src="./firebase.js"></script>
+
+  <!-- SwiperJS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 </head>
 <body>
 
   <!-- ✅ Navbar will be injected here -->
   <div id="navbar-placeholder"></div>
 
+  
+
   <!-- ✅ Hero Section -->
   <section class="hero">
     <video autoplay muted loop class="background-video">
-      <source src="photos/backgroundvideo.mp4" type="video/mp4">
+      <source src="photos/backgroundvideo.mp4" type="video/mp4" />
     </video>
     <div class="hero-text">
       <h1></h1>
       <p></p>
-      <div class="hero-buttons">
-        <button onclick="learnMore()">LEARN MORE</button>
-        <button onclick="joinUs()">JOIN US</button>
-      </div>
     </div>
   </section>
 
   <!-- ✅ Values Section -->
-  <section class="values-section">
-    <div class="value-card">
-      <img src="photos/Quality.png" alt="Quality Icon">
-      <h3>QUALITY</h3>
-      <p>We uphold the highest standards of construction quality, ensuring every project reflects precision, durability, and superior craftsmanship.</p>
-    </div>
+<section class="values-section">
+  <div class="value-card show">
+    <img src="photos/Quality.png" alt="Quality Icon" />
+    <h3>QUALITY</h3>
+    <p>We uphold the highest standards of construction quality, ensuring every project reflects precision, durability, and superior craftsmanship.</p>
+  </div>
 
-    <div class="value-card">
-      <img src="photos/consistency.jpg" alt="Consistency Icon">
-      <h3>CONSISTENCY</h3>
-      <p>With decades of experience, our consistent performance in delivering projects on time strengthens our reputation in the real estate industry.</p>
-    </div>
+  <div class="value-card show">
+    <img src="photos/consistency.jpg" alt="Consistency Icon" />
+    <h3>CONSISTENCY</h3>
+    <p>With decades of experience, our consistent performance in delivering projects on time strengthens our reputation in the real estate industry.</p>
+  </div>
 
-    <div class="value-card">
-      <img src="photos/trust.jpg" alt="Trust Icon">
-      <h3>TRUST</h3>
-      <p>Our stakeholders' trust is our greatest asset. We honor commitments with integrity, transparency, and customer-centric service at all levels.</p>
-    </div>
-  </section>
+  <div class="value-card show">
+    <img src="photos/trust.jpg" alt="Trust Icon" />
+    <h3>TRUST</h3>
+    <p>Our stakeholders' trust is our greatest asset. We honor commitments with integrity, transparency, and customer-centric service at all levels.</p>
+  </div>
+</section>
 
-  <!-- ✅ Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-column"></div>
 
-      <div class="footer-column">
-        <h4>MENU</h4>
-        <p><a href="terms.html">Terms & Conditions</a></p>
-        <p><a href="privacy.html">Privacy Policy</a></p> 
+  <!-- ✅ Popup Modal (Latest Projects) -->
+  <div id="latestProjectModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+
+      <!-- 🔹 Swiper Slider -->
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+
+          <!-- Project 1 -->
+          <div class="swiper-slide popup-project">
+            <img src="photos/pop1.jpg" alt="Project 1" />
+            <h2> AUREATE </h2>
+            <p> Low College Road</p>
+            <button class="enquireBtn">ENQUIRE NOW</button>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="swiper-slide popup-project">
+            <img src="photos/pop2.JPG" alt="Project 2" />
+            <h2>SHREE GAURI</h2>
+            <p>Shaniwar Peth</p>
+            <button class="enquireBtn">ENQUIRE NOW</button>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="swiper-slide popup-project">
+            <img src="photos/pop 3.jpg" alt="Project 3" />
+            <h2>VEER MARUTI</h2>
+            <p>Shaniwar Peth</p>
+            <button class="enquireBtn">ENQUIRE NOW</button>
+          </div>
+
+        </div>
       </div>
     </div>
+  </div>
 
-    <p>© 2025 Shree Omkareshwar Developers - All Rights Reserved.</p>
-    <button onclick="location.href='login.html'" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+  <!-- ✅ Footer will be injected here -->
+  <div id="footer-placeholder"></div> 
+  <!-- ✅ Scripts -->
+  <script>
+    // Load Navbar
+    fetch("nav.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-placeholder").innerHTML = html;
+
+        const menuToggle = document.querySelector("#navbar-placeholder .hamburger");
+        const navLinks = document.querySelector("#navbar-placeholder #navLinks");
+        if (menuToggle && navLinks) {
+          menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+          });
+        }
+
+        const dropdownBtn = document.querySelector("#navbar-placeholder .dropbtn");
+        const projectsDropdown = document.querySelector("#navbar-placeholder #projectsDropdown");
+        if (dropdownBtn && projectsDropdown) {
+          dropdownBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            projectsDropdown.classList.toggle("show");
+          });
+          document.addEventListener("click", (event) => {
+            if (!event.target.closest(".dropdown")) {
+              projectsDropdown.classList.remove("show");
+            }
+          });
+        }
+      });
+
+    // Load Footer
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      });
+
+    // Show popup after 1 second
+    setTimeout(() => {
+      document.getElementById("latestProjectModal").style.display = "flex";
+
+      // ✅ Initialize Swiper only when modal opens
+      var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false
+        },
+        pagination: { 
+          el: ".swiper-pagination", 
+          clickable: true 
+        },
+        navigation: { 
+          nextEl: ".swiper-button-next", 
+          prevEl: ".swiper-button-prev" 
+        }
+      });
+    }, 1000);
+
+    // Close popup
+    document.querySelector(".close-btn").addEventListener("click", () => {
+      document.getElementById("latestProjectModal").style.display = "none";
+    });
+
+    // ✅ Enquire buttons (send project name dynamically)
+    document.querySelectorAll(".enquireBtn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const projectName = e.target.closest(".popup-project").querySelector("h2").innerText;
+        window.location.href = "enqurie form.html?project=" + encodeURIComponent(projectName);
+      });
+    });
+  </script>
+
+  <!-- SwiperJS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
+    <button onclick="location.href='login.html'" style="padding: 6px 9px; color: rgb(23, 22, 22); border: none; border-radius: 4px; cursor: pointer;">
       Admin Login
     </button>
-  </footer>
-
-  <!-- ✅ Navbar Inject Script -->
-  <script>
-    fetch('nav.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('navbar-placeholder').innerHTML = data;
-      });
-  </script>
-
-  <!-- ✅ Custom Script -->
-  <script>
-    function toggleDropdown(event) {
-      event.preventDefault();
-      const dropdown = document.getElementById("projectsDropdown");
-      dropdown.classList.toggle("show");
-    }
-
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
-        const dropdowns = document.getElementsByClassName("dropdown-content");
-        for (let i = 0; i < dropdowns.length; i++) {
-          dropdowns[i].classList.remove('show');
-        }
-      }
-    }
-
-    function learnMore() {
-      alert("Learn More clicked!");
-    }
-
-    function joinUs() {
-      alert("Join Us clicked!");
-    }
-  </script>
-
-  <script src="script.js"></script>
-
 </body>
 </html>
+
+

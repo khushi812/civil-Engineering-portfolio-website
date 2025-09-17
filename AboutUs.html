@@ -6,107 +6,128 @@
   <title>About Us - Shree Omkareshwar Developers</title>
   <link rel="stylesheet" href="About.css" />
 </head>
-
 <body>
 
-<header>
-  <div class="logo">
-    <video src="photos/logo.mp4" autoplay muted loop playsinline style="width: 70px; border-radius: 20%;"></video>
-  </div>
+  <!-- NAVBAR WILL LOAD HERE -->
+  <div id="navbar-container"></div>
 
-  <nav>
-    <div class="hamburger">&#9776;</div>
-    <ul>
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="#" class="active">ABOUT</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropbtn" onclick="toggleDropdown(event)">PROJECTS ▼</a>
-        <div class="dropdown-content" id="projectsDropdown">
-          <a href="project.html?type=Upcoming">Upcoming Projects</a>
-          <a href="project.html?type=ongoing">Ongoing Projects</a>
-          <a href="project.html?type=Completed">Completed Projects</a>
-        </div>
-      </li>
-      <li><a href="#">SERVICES</a></li>
-      <li><a href="#">CONTACT</a></li>
-    </ul>
-  </nav>
-
-  <div class="social-icons">
-    <a href="#"><img src="photos/facebook.png" alt="Facebook" /></a>
-    <a href="https://www.instagram.com/shree_omkareshwardevelopers"><img src="photos/instagram.jpeg" alt="Instagram" /></a>
-  </div>
-</header>
-
-<!-- ✅ Hero Section Like Home -->
-<section class="hero">
-  
-  <div class="hero-text">
-    <h1>About Us</h1>
-    <p>
-  Shree Omkareshwar Developers is an emerging organization based in Pune.
- B.K developers is our sister concern organization in the field of realty since a decade.
-Recently we have diversified our activities in to REDEVELOPMENT and RECONSTRUCTION.
-We are known for our quality construction and timely delivery of the project.
-We are a team of Architects, Engineers and Professionals having 30 years of experience in the 
-field of REALTY with proven track records and satisfied customers to back our vision.
-The Redevelopment cell is headed by the young, dynamic new generation having
-keen knowledge, ethical values and professional interest in promotion and development of societies.
-     
- 
-
-  </div>
-</section>
-
-<section class="why-choose-us">
-  <h2>Why Choose Shree Omkareshwar Developers?</h2>
-  <p class="intro-text">
-    We are committed to delivering inspiring spaces with ethical values, expert planning, and a vision for sustainable redevelopment.
-  </p>
-
-  <div class="features">
-    <div class="feature-card">
-      <img src="photos/Excellence.jpg" alt="Excellence">
-      <h3>Excellence</h3>
-      <p>With dedication and skill, we craft exceptional spaces showcasing our craftsmanship and precision.</p>
+  <!-- HERO section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>About Us</h1>
+      <p>
+        Shree Omkareshwar Developers, based in Pune, is a trusted name in real estate, 
+        backed by the legacy of our sister concern, <bold>B.K. Developers</bold>. With over 30 years of 
+        industry expertise, we specialize in redevelopment and reconstruction, delivering projects 
+        known for quality construction, timely delivery, and customer satisfaction. Guided by a dynamic new generation, our team combines ethical values with professional excellence to build spaces that  inspire trust and enhance lifestyles.
+      </p>
     </div>
-    <div class="feature-card">
-      <img src="photos/valueofmoney.png" alt="Value for Money">
-      <h3>Value for Money</h3>
-      <p>We ensure maximum value with every project, prioritizing client satisfaction and cost-effectiveness.</p>
-    </div>
-    <div class="feature-card">
-      <img src="photos/Trust.jpg" alt="Trust">
-      <h3>Trust</h3>
-      <p>Built on transparency and integrity, our relationships with clients are rooted in lasting trust.</p>
-    </div>
-    <div class="feature-card">
-      <img src="photos/Experience.png" alt="Experience">
-      <h3>Experience</h3>
-      <p>Decades of real estate knowledge blended with innovation ensure stunning and timely project outcomes.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<script>
-  function toggleDropdown(event) {
-    event.preventDefault();
-    const dropdown = document.getElementById("projectsDropdown");
-    dropdown.classList.toggle("show");
-  }
+  <!-- PURPOSE, VISION, MISSION -->
+  <section class="pvm">
+    <div class="pvm-cards">
+      <div class="pvm-card">
+        <h3>PURPOSE</h3>
+        <p>
+          Our purpose is to cultivate an ecosystem that unlocks boundless potential 
+          and propels the growth and prosperity of individuals, organizations, cities, and our nation.
+        </p>
+      </div>
+      <div class="pvm-card">
+        <h3>VISION</h3>
+        <p>
+          To create an ecosystem where aspirations come to life and inspire future growth.
+        </p>
+      </div>
+      <div class="pvm-card">
+        <h3>MISSION</h3>
+        <p>
+          To leave a legacy of delivering creations that are timeless in values, product, and experience.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      const dropdowns = document.getElementsByClassName("dropdown-content");
-      for (let i = 0; i < dropdowns.length; i++) {
-        dropdowns[i].classList.remove('show');
-      }
-    }
-  };
-</script>
+  <!-- WHY CHOOSE US -->
+  <section class="why-choose-us">
+    <h2>Why Choose Shree Omkareshwar Developers?</h2>
+    <p class="intro-text">
+      We are committed to delivering inspiring spaces with ethical values, expert planning, and a vision for sustainable development.
+    </p>
+    <div class="features">
+      <div class="feature-card">
+        <img src="photos/Excellence.jpg" alt="Excellence">
+        <h3>Excellence</h3>
+        <p>With dedication and skill, we craft exceptional spaces showcasing our craftsmanship and precision.</p>
+      </div>
+      <div class="feature-card">
+        <img src="photos/valueofmoney.png" alt="Value for Money">
+        <h3>Value for Money</h3>
+        <p>We ensure maximum value with every project, prioritizing client satisfaction and cost-effectiveness.</p>
+      </div>
+      <div class="feature-card">
+        <img src="photos/Trust.jpg" alt="Trust">
+        <h3>Trust</h3>
+        <p>Built on transparency and integrity, our relationships with clients are rooted in lasting trust.</p>
+      </div>
+      <div class="feature-card">
+        <img src="photos/Experience.png" alt="Experience">
+        <h3>Experience</h3>
+        <p>Decades of real estate knowledge blended with innovation ensure stunning and timely project outcomes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER PLACEHOLDER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- SCRIPT TO LOAD NAVBAR -->
+  <script>
+    fetch("nav.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar-container").innerHTML = data;
+
+        const menuToggle = document.querySelector("#navbar-container .hamburger");
+        const navLinks = document.querySelector("#navbar-container #navLinks");
+        const dropdownBtn = document.querySelector("#navbar-container .dropbtn");
+        const projectsDropdown = document.querySelector("#navbar-container #projectsDropdown");
+
+        if (menuToggle && navLinks) {
+          menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+          });
+        }
+
+        if (dropdownBtn && projectsDropdown) {
+          dropdownBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            projectsDropdown.classList.toggle("show");
+          });
+        }
+
+        document.addEventListener("click", function (event) {
+          if (!event.target.closest(".dropdown")) {
+            projectsDropdown?.classList.remove("show");
+          }
+        });
+      });
+  </script>
+
+  <!-- SCRIPT TO LOAD FOOTER -->
+  <script>
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-placeholder").innerHTML = html;
+      });
+  </script>
 
 </body>
 </html>
+
+
 
 
 
