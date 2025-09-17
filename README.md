@@ -1,5 +1,5 @@
 # civil-Engineering-portfolio-website
-<<<<<<< HEAD
+
 =======
 # Shree Omkareshwar Developers Website
 
